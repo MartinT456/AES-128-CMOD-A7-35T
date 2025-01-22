@@ -5,7 +5,8 @@
 // Create Date: 01/18/2025 
 //
 // Module Name: aes_core
-// Project Name: aes_encryption
+// Project Name: aes_fsm
+// Target Devices: CMOD A7-35T
 //
 // Description: 
 // This module implements the AES-128 encryption process, which takes a 128-bit

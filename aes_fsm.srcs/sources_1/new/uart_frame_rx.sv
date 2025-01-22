@@ -1,21 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Written by: Martin Tran
 // 
-// Create Date: 01/21/2025 03:57:35 PM
-// Design Name: 
+// Create Date: 01/21/2025
+// 
 // Module Name: uart_frame_rx
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Project Name: aes_fsm
+// Target Devices: CMON A7-25T
+ 
 // Description: 
 // 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

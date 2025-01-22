@@ -5,7 +5,8 @@
 // Create Date: 01/18/2025 
 //
 // Module Name: key_expansion
-// Project Name: aes_encryption
+// Project Name: aes_fsm
+// Target Devices: CMOD A7-35T
 //
 // Description: 
 // 

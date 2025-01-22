@@ -3,7 +3,7 @@
 // Written by: Martin Tran
 // 
 // Create Date: 01/19/2025 
-// Design Name: 
+//
 // Module Name: mix_columns
 // Project Name: aes_encryption
 // Target Devices: CMOD A7-35T

@@ -5,16 +5,10 @@
 // Create Date: 01/19/2025
 // Design Name: 
 // Module Name: shift_rows
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Project Name: aes_fsm
+// Target Devices: CMOD A7-35T
+//
 // Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

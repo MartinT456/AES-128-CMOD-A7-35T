@@ -5,7 +5,8 @@
 // Create Date: 01/18/2025 
 //
 // Module Name: aes_sbox
-// Project Name: aex_encryption
+// Project Name: aes_fsm
+// Target Devices: CMOD A7-35T
 //
 // Description: 
 // This module implements the AES S-Box (Substitution Box) used in the AES encryption algorithm. 
