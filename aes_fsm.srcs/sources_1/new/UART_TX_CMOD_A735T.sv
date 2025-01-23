@@ -36,30 +36,38 @@ module UART_TX_CMOD_A735T(
     
     // 2-bit state definitions
     typedef enum logic [1:0] {IDLE, START, DATA, STOP} tx_state_t;
-    tx_state_t state = IDLE;
+    tx_state_t state, next_state;
     
     logic [3:0] bit_index;    // Bit index for 8 bits
     logic [15:0] baud_count;  // Baud rate timing count
     logic [7:0] shift_reg;    // Data shift register
+    
+    always_comb begin
+        if (state == IDLE) begin
+            busy = 1'b0;
+        end else begin
+            busy = 1'b1;
+        end
+    end
     
     // Transmit logic
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
             state <= IDLE;
             tx <= 1'b1;
-            busy <= 1'b0;
+            //busy <= 1'b0;
             bit_index <= 4'd0;
             baud_count <= 16'd0;           
         end else begin
             case (state)
                 IDLE: begin
                     tx <= 1'b1;
-                    busy <= 1'b0;
+                    //busy <= 1'b0;
                     baud_count <= 16'd0;
                     if (start) begin
                         state <= START;
                         shift_reg <= data;
-                        busy <= 1'b1;
+                        //busy <= 1'b1;
                     end
                 end
                 START: begin 
@@ -93,5 +101,9 @@ module UART_TX_CMOD_A735T(
                 end
             endcase   
         end
+    end
+    
+    always_comb begin
+        
     end
 endmodule

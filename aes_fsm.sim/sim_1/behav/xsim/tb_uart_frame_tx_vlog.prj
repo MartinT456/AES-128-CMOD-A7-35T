@@ -1,8 +1,10 @@
 # compile verilog/system verilog design source files
 sv xil_defaultlib  \
 "../../../../aes_fsm.srcs/sources_1/new/UART_RX_CMOD_A735T.sv" \
+"../../../../aes_fsm.srcs/sources_1/new/UART_TX_CMOD_A735T.sv" \
 "../../../../aes_fsm.srcs/sources_1/new/uart_frame_rx.sv" \
-"../../../../aes_fsm.srcs/sim_1/new/tb_uart_frame_rx.sv" \
+"../../../../aes_fsm.srcs/sources_1/new/uart_frame_tx.sv" \
+"../../../../aes_fsm.srcs/sim_1/new/tb_uart_frame_tx.sv" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

@@ -41,7 +41,7 @@ module uart_frame_tx(
         WAIT_UART                     // Wait for current byte to finish transmitting and tx line to clear
     } state_t;
     
-    state_t state, next_state;
+    state_t state, next_state, wait_state;
     
     // UART TX Instantiation
     UART_TX_CMOD_A735T #(
@@ -51,9 +51,9 @@ module uart_frame_tx(
         .clk(clk),
         .reset(reset),
         .data(tx_data),
-        .start(start),
+        .start(tx_start),
         .tx(tx),
-        .busy(busy)
+        .busy(tx_busy)
     );
     
     // Logic for state machine
@@ -91,6 +91,7 @@ module uart_frame_tx(
                 tx_data = 8'h02;
                 tx_start = 1'b1;
                 if (!tx_busy) begin
+                    wait_state = state;
                     next_state = WAIT_UART;
                 end
             end
@@ -102,6 +103,7 @@ module uart_frame_tx(
                     if(byte_index == 5'd15) begin
                         next_state = END_BYTE;  // Move to send end byte to indicate end of frame
                     end else begin
+                        wait_state = state;
                         next_state = WAIT_UART;
                     end
                 end
@@ -111,6 +113,7 @@ module uart_frame_tx(
                 tx_data  = 8'h03;
                 tx_start = 1'b1;
                 if (!tx_busy) begin
+                    wait_state = state;
                     next_state = WAIT_UART;
                 end            
             end
@@ -126,9 +129,9 @@ module uart_frame_tx(
             WAIT_UART: begin
                 tx_start = 1'b0;
                 if (!tx_busy) begin
-                    case (state)
+                    case (wait_state)
                         START_BYTE: next_state = PROCESSING;
-                        PROCESSING:  next_state = PROCESSING;
+                        PROCESSING: next_state = PROCESSING;
                         END_BYTE:   next_state = FINISH;
                         default:    next_state = IDLE;
                     endcase
