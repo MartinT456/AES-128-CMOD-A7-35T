@@ -5,4 +5,4 @@ Sending frame: 02444cafaee8e0a98c03595b2ea5b221
 PASS: Input = 02444cafaee8e0a98c03595b2ea5b221, Output = 02444cafaee8e0a98c03595b2ea5b221
 Sending frame: 74a951fa7e96f61a964dace91fc2ad58
 PASS: Input = 74a951fa7e96f61a964dace91fc2ad58, Output = 74a951fa7e96f61a964dace91fc2ad58
-$finish called at time : 56251870 ns : File "F:/FPGA_Repos/aes_fsm/aes_fsm.srcs/sim_1/new/tb_uart_frame_rx.sv" Line 137
+$finish called at time : 56251621 ns : File "F:/FPGA_Repos/aes_fsm/aes_fsm.srcs/sim_1/new/tb_uart_frame_rx.sv" Line 134

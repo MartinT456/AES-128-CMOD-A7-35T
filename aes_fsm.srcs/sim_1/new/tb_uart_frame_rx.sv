@@ -17,9 +17,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module tb_uart_frame_rx;
-
 
     localparam DATA_BITS = 128; // Number of payload bits
     localparam CLK_PERIOD = 83; // 12 MHz signal period in ns
@@ -53,6 +51,7 @@ module tb_uart_frame_rx;
         end
     endtask
     
+    // Takes an input byte and sends it over serial line LSB first
     task send_byte(input logic [7:0] byte_in);
         begin
             send_bit(1'b0); //Start bit
@@ -65,22 +64,20 @@ module tb_uart_frame_rx;
     endtask
 
     // Task to send a full frame
-    // Data frame is sent as : {0x02, 128 bit data payload, 0x03)
+    // Data frame is sent as : {0x02, 128-bit data payload, 0x03)
     task send_frame(input logic [DATA_BITS-1:0] payload);
         integer i;
-        begin
-            
+        begin 
             // Send start delimiter (0x02)
             send_byte(8'h02);
-
+            
             // Send payload data, most significant byte first
             for (i = BYTES_PER_FRAME-1; i >= 0; i = i - 1) begin
                 send_byte(payload[i*8+:8]);
             end
-
+            
             // Send end delimiter (0x03)
             send_byte(8'h03);
-            #(CLK_PERIOD); // Wait for one additional clock period
         end
     endtask
     
@@ -134,6 +131,5 @@ module tb_uart_frame_rx;
         #(5 * CLK_PERIOD);
         $finish;
     end
-
 endmodule
 

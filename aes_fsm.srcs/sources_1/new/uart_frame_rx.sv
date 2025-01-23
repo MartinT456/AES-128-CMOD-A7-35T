@@ -30,7 +30,6 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module uart_frame_rx(
     input logic clk,
     input logic reset,
@@ -84,17 +83,14 @@ module uart_frame_rx(
     end
     
     always_comb begin
-        next_state = state;
-        
-        
+        next_state = state;        
         case (state)
             IDLE: begin
                 frame_ready = 1'b0;
                 if (byte_valid && rx_byte == START_BYTE) begin
                     next_state = PROCESSING;
                 end
-            end
-            
+            end            
             PROCESSING: begin
                 frame_ready = 1'b0;
                 if (byte_valid) begin
@@ -103,8 +99,7 @@ module uart_frame_rx(
                         next_state = FINISH;
                     end 
                 end
-            end
-            
+            end            
             FINISH: begin
                 if (byte_valid && rx_byte == END_BYTE) begin
                     frame = shift_reg;
