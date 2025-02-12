@@ -20,11 +20,13 @@
 // Inputs:
 // - input logic clk: Clock signal to synchronize operations.
 // - input logic reset: Reset signal to initialize the module state.
+// - input logic start: Start signal to begin aes-128 encryption process.
 // - input logic [127:0] plaintext: 128-bit plaintext input to be encrypted.
 // - input logic [127:0] key: 128-bit encryption key for the AES process.
 //
 // Outputs:
 // - output logic [127:0] ciphertext: 128-bit encrypted output produced by AES algorithm.
+// - output logic done: Flag to indicate the the encryption process is finished
 //
 // Internal Signals:
 // - logic [127:0] state: Represents the current state of the AES encryption process.
@@ -64,9 +66,11 @@
 module aes_core(
     input logic clk,
     input logic reset,
+    input logic start,                    // Start encryption signal
     input logic [127:0] plaintext,        // plaintext input
     input logic [127:0] key,             // encyption key
-    output logic [127:0] ciphertext        // ciphertext output
+    output logic [127:0] ciphertext,        // ciphertext output
+    output logic done                      // Encryption finished flag
     );
     
     logic [127:0] state; // encryption state
@@ -99,8 +103,9 @@ module aes_core(
             state <= 128'b0;
             round <= 0;
             ciphertext <= 128'b0;
+            done <= 1'b0;
         end else begin
-            if (round == 0) begin
+            if (start && round == 0) begin
                 state <= plaintext ^ round_keys[0]; // Initial AddRoundKey
                 round <= 1;
             end else if (round < 10) begin
