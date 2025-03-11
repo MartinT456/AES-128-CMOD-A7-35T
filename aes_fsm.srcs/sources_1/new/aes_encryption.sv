@@ -49,7 +49,8 @@ module aes_encryption(
     input  logic clk,         
     input  logic reset,      
     input  logic rx,          
-    output logic tx,          
+    output logic tx,  
+    output logic busy,        
     input  logic [127:0] aes_key     // AES-128 encryption key, maybe hard code this for now
     );
 
@@ -78,7 +79,7 @@ module aes_encryption(
         .reset(reset),
         .rx(rx),
         .frame(rx_frame),
-        .frame_ready(frame_ready)
+        .frame_ready(rx_frame_ready)
     );
 
     // Instantiate AES-128 Encryption Module
@@ -112,14 +113,18 @@ module aes_encryption(
     end
 
     always_comb begin
-        next_state = state;
-        encrypt_start = 0;
-        tx_start = 0;
+        next_state = state;     
+        
 
         case (state)
             IDLE: begin
-                if (rx_frame_ready)
+                tx_start = 0;
+                encrypt_start = 0;
+                busy = 1'b0;
+                if (rx_frame_ready) begin
+                    busy = 1'b1;
                     next_state = RECEIVE;
+                end
             end
 
             RECEIVE: begin
@@ -130,11 +135,13 @@ module aes_encryption(
             ENCRYPT: begin
                 if (encrypt_done)
                     next_state = TRANSMIT;
+                    encrypt_start = 0;
             end
 
             TRANSMIT: begin
                 if (!tx_busy) begin
                     tx_start = 1;
+                end else if (tx_frame_ready) begin
                     next_state = IDLE;
                 end
             end

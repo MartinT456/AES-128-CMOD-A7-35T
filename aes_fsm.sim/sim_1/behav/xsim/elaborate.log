@@ -1,7 +1,7 @@
 Vivado Simulator v2024.2.0
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: F:/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_uart_frame_tx_behav xil_defaultlib.tb_uart_frame_tx xil_defaultlib.glbl -log elaborate.log 
+Running: F:/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_aes_encryption_behav xil_defaultlib.tb_aes_encryption xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -9,10 +9,16 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.UART_TX_CMOD_A735T_default
-Compiling module xil_defaultlib.uart_frame_tx
 Compiling module xil_defaultlib.UART_RX_CMOD_A735T_default
 Compiling module xil_defaultlib.uart_frame_rx
-Compiling module xil_defaultlib.tb_uart_frame_tx
+Compiling module xil_defaultlib.key_expansion
+Compiling module xil_defaultlib.sub_bytes
+Compiling module xil_defaultlib.shift_rows
+Compiling module xil_defaultlib.mix_columns
+Compiling module xil_defaultlib.aes_core
+Compiling module xil_defaultlib.UART_TX_CMOD_A735T_default
+Compiling module xil_defaultlib.uart_frame_tx
+Compiling module xil_defaultlib.aes_encryption
+Compiling module xil_defaultlib.tb_aes_encryption
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_uart_frame_tx_behav
+Built simulation snapshot tb_aes_encryption_behav

@@ -27,11 +27,11 @@ module tb_uart_frame_tx;
     parameter CLK_FREQ  = 12_000_000;
 
     // Testbench signals
-    logic        clk;
-    logic        reset;
-    logic        start;
+    logic clk;
+    logic reset;
+    logic start;
     logic [127:0] frame, frame_out;
-    logic        tx, busy, frame_ready, frame_out_ready;
+    logic tx, busy, frame_ready, frame_out_ready;
     
 
     // Clock generation (12 MHz)

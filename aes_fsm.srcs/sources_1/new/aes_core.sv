@@ -108,7 +108,7 @@ module aes_core(
             if (start && round == 0) begin
                 state <= plaintext ^ round_keys[0]; // Initial AddRoundKey
                 round <= 1;
-            end else if (round < 10) begin
+            end else if (round > 0 && round < 10) begin
                 state <= mix_columns_out ^ round_keys[round];
                 round <= round + 1;
             end else if (round == 10) begin
@@ -116,6 +116,7 @@ module aes_core(
                 round <= round + 1; // Allow one more clock cycle for signals to propagate before loading state to ciphertext
             end else begin
                 ciphertext <= state; // Final ciphertext output
+                done <= 1'b1;
                 round <= 0;
             end
         end

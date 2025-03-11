@@ -27,7 +27,7 @@ module uart_frame_tx(
     parameter int BAUD_RATE = 9600;
     parameter int CLK_FREQ = 12_000_000;
     
-    logic [3:0] byte_index;          // CConter for current byte being transmitted
+    logic [3:0] byte_index;          // Counter for current byte being transmitted
     logic       tx_start;            
     logic       tx_busy;             
     logic [7:0] tx_data;             // Data to send to the UART TX module
